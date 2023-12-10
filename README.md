@@ -16,7 +16,7 @@ CL-USER>
 ```
 
 ## Number
-parse-float (string)
+**parse-float** *(string)*
 Parse floating-point numbers from strings.
 ```
 CL-USER> (kit:parse-float "1.23")
@@ -28,7 +28,7 @@ CL-USER> (kit:parse-float "1.2322.123 ")
 CL-USER> 
 ```
 
-digit-string-p (string)
+**digit-string-p** *(string)*
 Determine whether a string is composed entirely of numbers.
 ```
 CL-USER> (kit:digit-string-p "1a.asda")
@@ -40,7 +40,7 @@ NIL
 CL-USER> 
 ```
 
-integer-to-bits (integer)
+**integer-to-bits** *(integer)*
 Numbers are converted to binary.
 ```
 CL-USER> (kit:digit-string-p "1a.asda")
@@ -52,7 +52,7 @@ NIL
 CL-USER> 
 ```
 
-bits-to-integer (bit-vector)
+**bits-to-integer** *(bit-vector)*
 Convert binary to number.
 ```
 CL-USER> (kit:bits-to-integer (kit:integer-to-bits 1))
@@ -62,7 +62,7 @@ CL-USER> (kit:bits-to-integer (kit:integer-to-bits 1123123))
 CL-USER> 
 ```
 
-integer-to-bytes (integer length &key (order :big) (signed nil))
+**integer-to-bytes** *(integer length &key (order :big) (signed nil))*
 Number to byte array.
 ```
 CL-USER> (kit:integer-to-bytes 123 16)
@@ -76,7 +76,7 @@ CL-USER> (kit:integer-to-bytes 1212313 8 :order :little)
 CL-USER> 
 ```
 
-bytes-to-integer (array &key (order :big) (signed nil))
+**bytes-to-integer** *(array &key (order :big) (signed nil))*
 Byte array to number.
 ```
 CL-USER> (kit:bytes-to-integer (kit:integer-to-bytes 123 16))
@@ -85,7 +85,7 @@ CL-USER>
 ```
 
 ##String
-string-join (sequences &key (sep ","))
+**string-join** *(sequences &key (sep ","))*
 String splicing.
 ```
 CL-USER> (kit:string-join '("a" "b" "c" "d"))
@@ -94,7 +94,7 @@ CL-USER>
 ```
 
 ##Parse
-parse-ts (timestamp)
+**parse-ts** *(timestamp)*
 Parsing timestamps generates the corresponding day stamps, hour stamps, minute stamps, hours, minutes, and seconds.
 ```
 CL-USER> (kit:parse-ts 1702213775)
@@ -107,19 +107,19 @@ CL-USER> (kit:parse-ts 1702213775)
 CL-USER> 
 ```
 
-parse-xml (filename &key skip-root-p auto-parse-type-p (auto-parse-type-func 'read-from-string))
-Parsing the XML file generates a hash structure.
-skip-root-p 是否跳过根节点
-auto-parse-type-p 是否自动解析属性类型
-auto-parse-type-func 自动解析属性类型函数(单参数)
+**parse-xml** *(filename &key skip-root-p auto-parse-type-p (auto-parse-type-func 'read-from-string))*
+Parsing the XML file generates a hash structure.  
+skip-root-p 是否跳过根节点  
+auto-parse-type-p 是否自动解析属性类型  
+auto-parse-type-func 自动解析属性类型函数(单参数)  
 
-parse-csv (filename key-row value-row &key (external-format :utf-8) skip-first-p auto-parse-type-p (auto-parse-type-func 'read-from-string))
-Parsing the CSV file generates a hash structure.
-key-row 可以是 number 或 list, 从 1 开始
-value-row 可以是 number 或 list 或 plist, 从 1 开始
-skip-first-p 是否跳过表头
-auto-parse-type-p 是否自动解析属性类型
-auto-parse-type-func 自动解析属性类型函数(单参数)
+**parse-csv** *(filename key-row value-row &key (external-format :utf-8) skip-first-p auto-parse-type-p (auto-parse-type-func 'read-from-string))*
+Parsing the CSV file generates a hash structure.  
+key-row 可以是 number 或 list, 从 1 开始  
+value-row 可以是 number 或 list 或 plist, 从 1 开始  
+skip-first-p 是否跳过表头  
+auto-parse-type-p 是否自动解析属性类型  
+auto-parse-type-func 自动解析属性类型函数(单参数)  
   
 ```
 (parse-vcsv "xx.csv" 1 1)

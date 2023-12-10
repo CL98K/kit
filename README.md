@@ -84,7 +84,7 @@ CL-USER> (kit:bytes-to-integer (kit:integer-to-bytes 123 16))
 CL-USER> 
 ```
 
-##String
+## String
 **string-join** *(sequences &key (sep ","))*  
 String splicing.
 ```
@@ -93,7 +93,7 @@ CL-USER> (kit:string-join '("a" "b" "c" "d"))
 CL-USER> 
 ```
 
-##Parse
+## Parse
 **parse-ts** *(timestamp)*  
 Parsing timestamps generates the corresponding day stamps, hour stamps, minute stamps, hours, minutes, and seconds.
 ```

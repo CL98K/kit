@@ -22,8 +22,8 @@
      (+ (* (+ (* hour 60) minute) 60) second))))
 
 (defun parse-xml (filename &key skip-root-p auto-parse-type-p (auto-parse-type-func 'read-from-string))
-  "解析 XML 生成哈希结构"
-  ;; skip-first-p 是否跳过根节点
+  "解析 XML 文件生成哈希结构"
+  ;; skip-root-p 是否跳过根节点
   ;; auto-parse-type-p 是否自动解析属性类型
   ;; auto-parse-type-func 自动解析属性类型函数(单参数)
   
@@ -86,7 +86,7 @@
       xmls-dict-struct)))
 
 (defun parse-csv (filename key-row value-row &key (external-format :utf-8) skip-first-p auto-parse-type-p (auto-parse-type-func 'read-from-string))
-  "从 CSV 文件构建资源哈希结构"
+  "解析 CSV 文件生成哈希结构"
   ;; key-row 可以是 number 或 list, 从 1 开始
   ;; value-row 可以是 number 或 list 或 plist, 从 1 开始
   ;; skip-first-p 是否跳过表头

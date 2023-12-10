@@ -18,7 +18,7 @@
 
 (declaim (ftype (function (simple-array) boolean) digit-string-p) (inline digit-char-p))
 (defun digit-string-p (string)
-  "判读是否是数字字符串"
+  "判断是否是数字字符串"
   (let ((size (array-total-size string)))
     (declare (type (mod 1024) size))
     (dotimes (i size)

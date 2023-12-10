@@ -3,7 +3,7 @@ Kit encapsulates some gadgets.
 
 # Interface
 ## Format Output
-printf (object &optional (stream *standard-output*) (indent 0)
+**printf** *(object &optional (stream *standard-output*) (indent 0)*
 ```
 CL-USER> data
 #<HASH-TABLE :TEST EQL :COUNT 2 {1004398943}>

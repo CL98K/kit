@@ -41,11 +41,11 @@
   "二进制到数字"
   (reduce #'(lambda (first-bit second-bit) (+ (* first-bit 2) second-bit)) bit-vector))
 
-(declaim (ftype (function (fixnum fixnum &key (:order symbol) (:signed boolean)) simple-array) integer-to-bytes) (inline integer-to-bytes))
+(declaim (ftype (function (integer fixnum &key (:order symbol) (:signed boolean)) simple-array) integer-to-bytes) (inline integer-to-bytes))
 (defun integer-to-bytes (integer length &key (order :big) (signed nil))
   "数字转字节数组"
   (declare (optimize (speed 3) (safety 0) (debug 0) (compilation-speed 3))
-           (type fixnum integer length) (type symbol order) (type boolean signed))
+           (type integer integer) (type fixnum length) (type symbol order) (type boolean signed))
   
   (if (and (not (eq order :big)) (not (eq order :little))) (error "The 'order' can only be: big or :little"))
   
@@ -86,7 +86,6 @@
   "字节数组转数字"
   (declare (optimize (speed 3) (safety 0) (debug 0) (compilation-speed 3))
            (type (simple-array (unsigned-byte 8) *) bytes) (type symbol order) (type boolean signed))
-  
   (if (and (not (eq order :big)) (not (eq order :little))) (error "The 'order' can only be: big or :little"))
   
   (let* ((integer 0)
@@ -95,7 +94,7 @@
          (bytes-size (array-total-size bytes))
          (bits-length (* bytes-size 8))
          (bits (make-array bits-length :element-type 'bit :initial-element (if signed 1 0))))
-    (declare (type bit element) (type fixnum integer bytes-size bits-length) (type simple-array bits) (type boolean flag))
+    (declare (type bit element) (type fixnum bytes-size bits-length) (type integer integer) (type simple-array bits) (type boolean flag))
     
     (loop for i fixnum from 0 by 8
           for j fixnum from 0 below bytes-size
@@ -113,7 +112,7 @@
           for v bit = (aref bits i)
           for flag = (if (= v 0) nil t)
           do
-          (incf integer (* (if signed (if flag 1 v) v) (the fixnum (expt 2 j)))))
+          (incf integer (* (if signed (if flag 1 v) v) (expt 2 j))))
 
-    (return-from bytes-to-integer (if (and signed (= (aref bits 0) 1)) (- integer (the fixnum (expt 2 bits-length))) integer))))
+    (return-from bytes-to-integer (if (and signed (= (aref bits 0) 1)) (- integer (expt 2 bits-length)) integer))))
 

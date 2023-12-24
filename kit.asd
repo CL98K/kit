@@ -1,7 +1,7 @@
 (defsystem :kit
-  :description "first aid kit"
-  :version "1.0.0"
-  :author "Gzz <x>"
+  :description "kit"
+  :version "0.0.1"
+  :author "CL98K <917599580@QQ.COM>"
   :licence ""
   :depends-on (:local-time :cl-csv :cxml :alexandria)
   :components ((:module "src"

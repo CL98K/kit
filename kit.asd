@@ -12,6 +12,7 @@
                              (:file "parse")
                              (:file "number")
                              (:file "string")
+                             (:file "cache")
                              ))))
 
 (defsystem :kit/test
